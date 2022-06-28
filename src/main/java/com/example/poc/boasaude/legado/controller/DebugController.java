@@ -1,4 +1,4 @@
-package com.example.poc.boasaude.controller;
+package com.example.poc.boasaude.legado.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;

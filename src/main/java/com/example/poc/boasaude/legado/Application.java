@@ -1,4 +1,4 @@
-package com.example.poc.boasaude;
+package com.example.poc.boasaude.legado;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
