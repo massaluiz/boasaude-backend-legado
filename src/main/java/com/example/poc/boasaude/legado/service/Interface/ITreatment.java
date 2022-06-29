@@ -6,9 +6,10 @@ import java.util.List;
 
 public interface ITreatment {
     public List<Object> getAllTreatment();
+
     Treatment addTreatment(Treatment treatment);
 
     Object getTreatment(String id);
 
-    long getSize();
+    void removeTreatment(String id);
 }

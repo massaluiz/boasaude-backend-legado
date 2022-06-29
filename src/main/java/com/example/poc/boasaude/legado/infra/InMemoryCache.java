@@ -1,11 +1,15 @@
-package com.example.poc.boasaude.legado.infra.Interface;
+package com.example.poc.boasaude.legado.infra;
 
+import com.example.poc.boasaude.legado.infra.Interface.ICache;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 import java.lang.ref.SoftReference;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -55,18 +59,13 @@ public class InMemoryCache implements ICache {
 
     @Override
     public List<Object> getAll() {
-        List<Object> all = new ArrayList<>();
-        Iterator<ConcurrentHashMap.Entry<String, SoftReference<CacheObject>> >
-                itr = cache.entrySet().iterator();
+        List<Object> treatments = new ArrayList<>();
+        Iterator<ConcurrentHashMap.Entry<String, SoftReference<CacheObject>>> itr = cache.entrySet().iterator();
         while (itr.hasNext()) {
-            ConcurrentHashMap.Entry<String, SoftReference<CacheObject>> entry
-                    = itr.next();
-            System.out.println("Key = " + entry.getKey()
-                    + ", Value = "
-                    + entry.getValue());
-            all.add(this.get(entry.getKey()));
+            ConcurrentHashMap.Entry<String, SoftReference<CacheObject>> entry = itr.next();
+            treatments.add(this.get(entry.getKey()));
         }
-        return all;
+        return treatments;
     }
 
     @Override

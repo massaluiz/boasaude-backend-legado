@@ -4,9 +4,7 @@ package com.example.poc.boasaude.legado.controller;
 import com.example.poc.boasaude.legado.model.Treatment;
 import com.example.poc.boasaude.legado.service.Interface.ITreatment;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,23 +14,23 @@ public class TreatmentController {
     @Autowired
     private ITreatment iTreatment;
 
-    @GetMapping("/treatment")
+    @GetMapping("/treatments")
     public List<Object> getAll() {
         return iTreatment.getAllTreatment();
     }
 
-    @GetMapping("/treatment/1")
-    public Treatment addTreatment() {
-        return iTreatment.addTreatment(new Treatment());
+    @PostMapping("/treatment")
+    public Treatment addTreatment(@RequestBody Treatment treatment) {
+        return iTreatment.addTreatment(treatment);
     }
 
-    @GetMapping("/treatment/get/{id}")
+    @GetMapping("/treatment/{id}")
     public Object getTreatment(@PathVariable String id) {
         return iTreatment.getTreatment(id);
     }
 
-    @GetMapping("/treatment/size")
-    public Object size() {
-        return iTreatment.getSize();
+    @DeleteMapping("/treatment/{id}")
+    public void removeTreatment(@PathVariable String id) {
+        iTreatment.removeTreatment(id);
     }
 }
