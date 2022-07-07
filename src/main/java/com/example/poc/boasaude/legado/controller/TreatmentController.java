@@ -29,6 +29,11 @@ public class TreatmentController {
         return iTreatment.getTreatment(id);
     }
 
+    @GetMapping("/treatment/user/{user}")
+    public List<Treatment> getTreatmentByUser(@PathVariable String user) {
+        return iTreatment.getTreatmentByUser(user);
+    }
+
     @DeleteMapping("/treatment/{id}")
     public void removeTreatment(@PathVariable String id) {
         iTreatment.removeTreatment(id);

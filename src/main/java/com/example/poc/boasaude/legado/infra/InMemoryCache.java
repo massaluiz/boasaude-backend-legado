@@ -1,6 +1,7 @@
 package com.example.poc.boasaude.legado.infra;
 
 import com.example.poc.boasaude.legado.infra.Interface.ICache;
+import com.example.poc.boasaude.legado.model.Treatment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
@@ -76,6 +77,17 @@ public class InMemoryCache implements ICache {
     @Override
     public long size() {
         return cache.entrySet().stream().filter(entry -> Optional.ofNullable(entry.getValue()).map(SoftReference::get).map(cacheObject -> !cacheObject.isExpired()).orElse(false)).count();
+    }
+
+    @Override
+    public List<Treatment> getAllType() {
+        List<Treatment> treatments = new ArrayList<>();
+        Iterator<ConcurrentHashMap.Entry<String, SoftReference<CacheObject>>> itr = cache.entrySet().iterator();
+        while (itr.hasNext()) {
+            ConcurrentHashMap.Entry<String, SoftReference<CacheObject>> entry = itr.next();
+            treatments.add(Treatment.class.cast(this.get(entry.getKey())));
+        }
+        return treatments;
     }
 
     @AllArgsConstructor

@@ -1,5 +1,7 @@
 package com.example.poc.boasaude.legado.infra.Interface;
 
+import com.example.poc.boasaude.legado.model.Treatment;
+
 import java.util.List;
 
 public interface ICache {
@@ -14,4 +16,6 @@ public interface ICache {
     void clear();
 
     long size();
+
+    List<Treatment> getAllType();
 }

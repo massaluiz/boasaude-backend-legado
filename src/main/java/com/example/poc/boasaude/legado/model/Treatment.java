@@ -20,5 +20,5 @@ public class Treatment {
     private String description;
     private LocalDateTime createAt;
     private LocalDateTime treatmentDate;
-    private User user;
+    private String user;
 }

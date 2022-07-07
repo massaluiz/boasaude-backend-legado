@@ -6,8 +6,10 @@ import com.example.poc.boasaude.legado.service.Interface.ITreatment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class TreatmentService implements ITreatment {
@@ -36,5 +38,17 @@ public class TreatmentService implements ITreatment {
     @Override
     public void removeTreatment(String id) {
         iCache.remove(id);
+    }
+
+    @Override
+    public List<Treatment> getTreatmentByUser(String user) {
+        List<Treatment> treatments = iCache.getAllType();
+        List<Treatment> treatmentsReturn = new ArrayList<>();
+        for (Treatment treatment: treatments) {
+            if(treatment.getUser().equalsIgnoreCase(user)) {
+                treatmentsReturn.add(treatment);
+            }
+        }
+         return treatmentsReturn;
     }
 }
