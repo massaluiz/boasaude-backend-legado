@@ -21,4 +21,5 @@ public class Treatment {
     private LocalDateTime createAt;
     private LocalDateTime treatmentDate;
     private String user;
+    private String speciality;
 }
