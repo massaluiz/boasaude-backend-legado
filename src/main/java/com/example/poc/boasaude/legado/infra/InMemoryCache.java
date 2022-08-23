@@ -80,12 +80,12 @@ public class InMemoryCache implements ICache {
     }
 
     @Override
-    public List<Treatment> getAllType() {
-        List<Treatment> treatments = new ArrayList<>();
+    public List<Object> getAllType() {
+        List<Object> treatments = new ArrayList<>();
         Iterator<ConcurrentHashMap.Entry<String, SoftReference<CacheObject>>> itr = cache.entrySet().iterator();
         while (itr.hasNext()) {
             ConcurrentHashMap.Entry<String, SoftReference<CacheObject>> entry = itr.next();
-            treatments.add(Treatment.class.cast(this.get(entry.getKey())));
+            treatments.add(Object.class.cast(this.get(entry.getKey())));
         }
         return treatments;
     }

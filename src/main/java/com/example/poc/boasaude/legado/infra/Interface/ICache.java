@@ -17,5 +17,5 @@ public interface ICache {
 
     long size();
 
-    List<Treatment> getAllType();
+    List<Object> getAllType();
 }

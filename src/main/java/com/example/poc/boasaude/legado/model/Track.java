@@ -13,14 +13,11 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Treatment {
+public class Track {
 
     private UUID id;
-    private String title;
-    private String description;
-    private LocalDateTime createAt;
-    private LocalDateTime treatmentDate;
+    private String action;
     private String user;
-    private String speciality;
+    private LocalDateTime createAt;
     private String type;
 }
