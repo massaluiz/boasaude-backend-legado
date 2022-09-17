@@ -36,9 +36,13 @@ public class TreatmentService implements ITreatment {
 
     @Override
     public Treatment addTreatment(Treatment treatment) {
-        treatment.setId(UUID.randomUUID());
+        if(treatment.getId() == null) {
+            treatment.setId(UUID.randomUUID());
+        }
         treatment.setType("TREATMENT");
-        treatment.setStatus("Under Analysis");
+        if(treatment.getStatus() == "" || treatment.getStatus() == null)  {
+            treatment.setStatus("Under Analysis");
+        }
         iCache.add(treatment.getId().toString(), treatment, 500000000);
         addingTrack("ADD_TREATMENT", treatment.getUser());
         return treatment;
@@ -77,5 +81,27 @@ public class TreatmentService implements ITreatment {
             }
         }
         return treatmentsReturn;
+    }
+
+    @Override
+    public List<Treatment> getTreatmentByStatus(String status) {
+        List<Object> objects = iCache.getAllType();
+        List<Treatment> treatmentsReturn = new ArrayList<>();
+        for (Object object : objects) {
+            if (object.getClass().equals(Treatment.class)) {
+                if (((Treatment) object).getStatus().equalsIgnoreCase(status)) {
+                    treatmentsReturn.add(((Treatment) object));
+                }
+            }
+        }
+        return treatmentsReturn;
+    }
+
+    @Override
+    public void authInsurance(String id) {
+        Treatment treatment = (Treatment) this.getTreatment(id);
+        treatment.setStatus("Authorized");
+        this.removeTreatment(treatment.getId().toString());
+        this.addTreatment(treatment);
     }
 }

@@ -38,4 +38,14 @@ public class TreatmentController {
     public void removeTreatment(@PathVariable String id) {
         iTreatment.removeTreatment(id);
     }
+
+    @PutMapping("/treatment/insurance/{id}")
+    public void authInsurance(@PathVariable String id) {
+        iTreatment.authInsurance(id);
+    }
+
+    @GetMapping("/treatment/status/{status}")
+    public List<Treatment> getTreatmentByStatus(@PathVariable String status) {
+        return iTreatment.getTreatmentByStatus(status);
+    }
 }

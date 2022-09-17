@@ -14,4 +14,8 @@ public interface ITreatment {
     void removeTreatment(String id);
 
     List<Treatment> getTreatmentByUser(String user);
+
+    List<Treatment> getTreatmentByStatus(String status);
+
+    void authInsurance(String id);
 }
