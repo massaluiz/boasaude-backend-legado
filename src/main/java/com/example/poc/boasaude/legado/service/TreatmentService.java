@@ -103,5 +103,6 @@ public class TreatmentService implements ITreatment {
         treatment.setStatus("Authorized");
         this.removeTreatment(treatment.getId().toString());
         this.addTreatment(treatment);
+        addingTrack("AUTH_TREAMENT", "ADMIN");
     }
 }
