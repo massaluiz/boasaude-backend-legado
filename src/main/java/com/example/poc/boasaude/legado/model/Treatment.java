@@ -23,4 +23,7 @@ public class Treatment {
     private String user;
     private String speciality;
     private String type;
+    private String healthInsurance;
+    private String doctor;
+    private String status;
 }

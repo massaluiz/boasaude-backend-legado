@@ -38,6 +38,7 @@ public class TreatmentService implements ITreatment {
     public Treatment addTreatment(Treatment treatment) {
         treatment.setId(UUID.randomUUID());
         treatment.setType("TREATMENT");
+        treatment.setStatus("Under Analysis");
         iCache.add(treatment.getId().toString(), treatment, 500000000);
         addingTrack("ADD_TREATMENT", treatment.getUser());
         return treatment;
